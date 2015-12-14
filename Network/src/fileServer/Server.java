@@ -8,9 +8,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-	static File myFile = new File("C:/Users/Simons/workspace/Network/scr/fileServer/ta.txt");
+	File myFile = new File("C:/Users/Simons/workspace/Network/scr/fileServer/ta.txt");
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
+		try {
+			new Server();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	Server() throws IOException{
 		ServerSocket serverSocket = new ServerSocket(8000);
 		Socket clientSocket = serverSocket.accept();
 		

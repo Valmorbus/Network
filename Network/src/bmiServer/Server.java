@@ -54,7 +54,6 @@ public class Server extends Application {
 			float weight = 0, lenght = 0; 
 			float bmi = 0;
 			
-			//DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());
 			DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
 			//OutputStreamWriter osw = new OutputStreamWriter(clientSocket.getOutputStream());
 			PrintWriter pw = new PrintWriter(clientSocket.getOutputStream());
@@ -63,10 +62,16 @@ public class Server extends Application {
 				weight = dis.readFloat();
 				lenght = dis.readFloat();
 				bmi = calculatebmi(weight, lenght);
-				//dos.writeFloat(bmi);
-				//dos.flush();
+				// DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());
+				// dos.writeUTF(Float.toString(bmi));
+				// dos.flush();
+				// DataOutputStream can use .writeUTF(String) to send string object
+				// clienten måste nog ta emot på ett annat sätt dock
+				// dis.readUTF()
 				pw.println(result(bmi) + " " + "BMI på hela jävla " + bmi);
 				pw.flush();
+
+				
 				
 				Platform.runLater(()->{
 					bmiText.setText("sent data");
